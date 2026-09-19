@@ -50,7 +50,7 @@ def get_users(db: Session = Depends(get_db), limit: int = 10, skip: int = 0, sea
     status_code=status.HTTP_201_CREATED,
     response_model=UserSchemaResponse,
 )
-def create_user(user: UserSchema, db: Session = Depends(get_db), current_user: TokenData = Depends(get_current_user)):
+def create_user(user: UserSchema, db: Session = Depends(get_db)):
     try:
         user.password = hash_password(user.password)
         new_user = UserModel(**user.dict())
