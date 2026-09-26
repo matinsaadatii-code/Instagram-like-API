@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from database import enigine
+# from database import enigine
 from routers import posts, users, auth
-from config import settings
-import model
+# from config import settings
+# import model
 
 # model.Base.metadata.create_all(bind=enigine)
 api = FastAPI()

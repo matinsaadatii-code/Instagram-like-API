@@ -87,7 +87,7 @@ def create_post(post: Post, db: Session = Depends(get_db), current_user: int = D
         #     connection.commit()
 
         new_post = PostModel(user_id=current_user.user_id, **post.dict()) 
-        db.add(new_post) 
+        db.add(new_post)
         db.commit() 
         db.refresh(new_post) 
 
@@ -123,13 +123,16 @@ def delete_post(item_id: int, db: Session = Depends(get_db), current_user: Token
                 db.delete(deleted_post) 
                 db.commit()
 
+    except HTTPException:
+        raise
+
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Database error: {str(e)}"
         )
 
-@router.put('/update/posts/{item_id}')
+@router.put('/update/posts/{item_id}', status_code=status.HTTP_200_OK)
 def update_post(item_id: int, post: Post, db: Session = Depends(get_db), current_user: TokenData = Depends(get_current_user)):
     try:
         # with connection.cursor() as cursor:
@@ -155,11 +158,13 @@ def update_post(item_id: int, post: Post, db: Session = Depends(get_db), current
             updated_post_query.update(post.dict(), synchronize_session=False)
             updated_post = updated_post_query.first()
             db.commit()
+            db.refresh(updated_post)
 
-            return {
-                'status': 'successfull',
-                'data': updated_post
-            }
+            return updated_post
+
+    except HTTPException:
+        raise
+        
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

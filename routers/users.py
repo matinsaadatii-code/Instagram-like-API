@@ -53,7 +53,7 @@ def get_users(db: Session = Depends(get_db), limit: int = 10, skip: int = 0, sea
 def create_user(user: UserSchema, db: Session = Depends(get_db)):
     try:
         user.password = hash_password(user.password)
-        new_user = UserModel(**user.dict())
+        new_user = UserModel(**user.dict()) 
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
