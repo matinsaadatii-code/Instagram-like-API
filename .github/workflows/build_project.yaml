@@ -26,3 +26,8 @@ jobs:
 
       - name: install all dependencies
         run: pip install -r requirements.txt
+
+      - name: test project with pytest
+        run: |
+          pip install pytest 
+          pytest -x -v -s --disable-warnings
