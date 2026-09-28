@@ -6,6 +6,16 @@ on:
   pull_request:
     branches: ['first_branche', 'second_branche']
 
+env:
+  DB_USERNAME: ${{secrets.DB_USERNAME}}
+  DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+  DB_IP: ${{secrets.DB_IP}}
+  DB_PORT: ${{secrets.DB_PORT}}
+  DB_NAME: ${{secrets.DB_NAME}}
+  SECRET_KEY: ${{secrets.SECRET_KEY}}
+  ALGORITHM: ${{secrets.ALGORITHM}}
+  ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
+
 jobs:
   job1:
     runs-on: ubuntu-latest
