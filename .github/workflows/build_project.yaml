@@ -19,6 +19,7 @@ env:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - name: began pipeline
         run: echo "pipeline has started"
