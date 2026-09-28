@@ -1,0 +1,28 @@
+name: Test
+
+on:
+  push:
+    branches: ['main', 'master']
+  pull_request:
+    branches: ['first_branche', 'second_branche']
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: began pipeline
+        run: echo "pipeline has started"
+
+      - name: pulling code
+        uses: actions/checkout@v4
+
+      - name: install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: update pip
+        run: python -m pip install --upgrade pip
+
+      - name: install all dependencies
+        run: pip install -r requirements.txt
