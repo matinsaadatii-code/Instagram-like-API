@@ -21,18 +21,27 @@ def get_db():
         db.close()
 
 connection = None
-while True:
-    try:
-        connection = psycopg.connect(
-            host=f'{settings.db_ip}', 
-            port=f'{settings.db_port}', 
-            dbname=f'{settings.db_name}', 
-            user=f'{settings.db_username}', 
-            password=f'{settings.db_password}', 
-            row_factory=dict_row
-        )
-        print('Database connected successfully!')
-        break
-    except Exception as e:
-        print(f'Database connection failed: {e}')
-        time.sleep(5)
+# while True:
+#     try:
+#         connection = psycopg.connect(
+#             host=f'{settings.db_ip}', 
+#             port=f'{settings.db_port}', 
+#             dbname=f'{settings.db_name}', 
+#             user=f'{settings.db_username}', 
+#             password=f'{settings.db_password}', 
+#             row_factory=dict_row
+#         )
+#         print('Database connected successfully!')
+#         break
+#     except Exception as e:
+#         print(f'Database connection failed: {e}')
+#         time.sleep(5)
+
+connection = psycopg.connect(
+    host=f'{settings.db_ip}', 
+    port=f'{settings.db_port}', 
+    dbname=f'{settings.db_name}', 
+    user=f'{settings.db_username}', 
+    password=f'{settings.db_password}', 
+    row_factory=dict_row
+)
