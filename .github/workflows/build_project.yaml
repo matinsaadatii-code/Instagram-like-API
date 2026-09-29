@@ -57,7 +57,6 @@ jobs:
       - name: test project with pytest
         run: |
           pip install pytest 
-          pip install httpx[http2]
           pytest -x -v -s --disable-warnings
       - name: end pipeline
         run: echo "pipeline has ended"
