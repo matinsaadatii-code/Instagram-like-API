@@ -11,7 +11,7 @@ env:
   DB_PASSWORD: ${{secrets.DB_PASSWORD}}
   DB_IP: localhost
   DB_PORT: ${{secrets.DB_PORT}}
-  DB_NAME: ${{secrets.DB_NAME}}_test
+  DB_NAME: ${{secrets.DB_NAME}}
   SECRET_KEY: ${{secrets.SECRET_KEY}}
   ALGORITHM: ${{secrets.ALGORITHM}}
   ACCESS_TOKEN_EXPIRE_MINUTES: ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}
